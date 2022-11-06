@@ -71,11 +71,9 @@ function game(){
 
         } if (computerMove===userMove){
           return getUserMove();
-        }
-                          
+        }                 
       }
     }
-  } 
-  
+  }  
 }
 game();
