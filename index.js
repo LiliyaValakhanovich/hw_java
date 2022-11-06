@@ -19,12 +19,12 @@ function getcomputerMove(minNum, maxNum){
     } if (computerMove===3){
       alert('Computer move is: paper');
     }
-  console.log(computerMove);
+  return computerMove;
 }
 
 function getUserMove(){
   userMove=prompt('Rock, Scissors, Paper... Please make your move');
-  console.log(userMove);  
+  return userMove;  
 }
 
 function game(){
@@ -72,10 +72,7 @@ function game(){
         } if (computerMove===userMove){
           return getUserMove();
         }
-            
-        console.log(userRes);
-        console.log(compRes);
-                   
+                          
       }
     }
   } 
