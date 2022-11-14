@@ -1,79 +1,50 @@
-let computerMove=0;
-let userMove='';
-let yourName='';
+fetch('https://dummyjson.com/products')
+  .then(res => res.json())
+  .then((data) => {
+    const products=data.products;
+    console.log(products);
 
-function username(){
-  yourName=prompt('Please, enter your name');
-    if (yourName.length===0){
-      yourName='user';
-    } return yourName; 
-}
 
-function getcomputerMove(minNum, maxNum){
-  const random=Math.random();
-  computerMove=Math.floor(random*(maxNum-minNum+1)+minNum);
-    if (computerMove===1){
-      alert('Computer move is: rock');
-    } if (computerMove===2){
-      alert('Computer move is: skissors');
-    } if (computerMove===3){
-      alert('Computer move is: paper');
-    }
-  return computerMove;
-}
+    products.forEach(product => {
+      const el=document.querySelector('.wrapper');
+      el.classList.add('row-cols-1','row-cols-sm-1','row-cols-md-4','g-2');
 
-function getUserMove(){
-  userMove=prompt('Rock, Scissors, Paper... Please make your move');
-  return userMove;  
-}
+      const cardCol=document.createElement('div');
+      cardCol.classList.add('col');
+      el.append(cardCol);
 
-function game(){
-  username();
-  let userRes=0;
-  let compRes=0;
-  
-  while (userRes<4) {
-    while (compRes<4) {
-     
-     getUserMove();
-      if (userMove===null){
-       return alert('You aborted this game. To start new game just refresh the page.');
-            
-      } if (userMove === 'rock' || userMove === 'scissors' || userMove === 'paper'){
-        getcomputerMove(1, 3);            
+      const cardEl=document.createElement('div');
+      cardEl.classList.add('card','h-100');
+      const img=document.createElement('img');
+      img.classList.add('card-img-top');
+      img.setAttribute('src', product.thumbnail);
+      cardEl.append(img);
+      cardCol.append(cardEl);         
+      console.log(cardEl);
+
+      const main=document.createElement('div');
+      main.classList.add('card-body','main');
+      const wl=document.createElement('div');
+      const title=document.createElement('h5');
+      const description=document.createElement('p');
+      title.textContent=product.title;
+      description.textContent=product.description; 
+      main.append(title);
+      main.append(description);
+      main.append(wl);
+      cardEl.append(main);
+
+      const footer=document.createElement('div');
+      footer.classList.add('card-footer');
+      const price=document.createElement('p');
+      const rating=document.createElement('p');
+      price.textContent=`Price: ${product.price}$`;
+      rating.textContent=`Rating: ${product.rating}`;
+      footer.append(price);
+      footer.append(rating);
+      main.append(footer);
+
+    }); 
         
-        if (computerMove===1 && userMove==='scissors'
-        || computerMove===2 && userMove==='paper'
-        || computerMove===3 && userMove==='rock'){
-          compRes=compRes+1;
-          alert(`Computer won this round: Current count is ${yourName}: ${userRes}: Computer ${compRes}`);
-          if (compRes===3){
-            alert(`Sorry. You lost this game. Count - You: ${userRes} : Computer ${compRes}`);
-            result=confirm('Do you want to start new game?');
-              if (result===true){
-              game();
-            } return;
-          }
-          
-        } if (userMove==='rock' && computerMove===2
-        || userMove==='scissors' && computerMove===3
-        || userMove==='paper' && computerMove===1){
-          userRes=userRes+1;
-          alert(`You won this round: Current count is ${yourName}: ${userRes}: Computer ${compRes}`); 
-          
-          if (userRes===3){
-            alert(`Congratulations. You won this game. Count - You: ${userRes} : Computer ${compRes}`);
-            result=confirm('Do you want to start new game?');
-              if (result===true){
-              game();
-            } return;
-          }
-
-        } if (computerMove===userMove){
-          return getUserMove();
-        }                 
-      }
-    }
-  }  
-}
-game();
+  });
+ 
