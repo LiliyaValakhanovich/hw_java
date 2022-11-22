@@ -14,11 +14,36 @@
   <script defer src="index.js"></script>
 </head>
 <body>
+  <div class="header">
+    <h2 class="header-item-left">Our Shop</h2>
+
+    <div class="header-item-right">
+
+      
+      <button class="you-cart btn btn-success">You cart - 0.00$</button>
+    
+      <form class="form">
+        <label><input class="form-input" type="text" placeholder="Search"></label>
+        <button class="btn btn-form btn-primary" type="submit">Search</button>
+      </form>
+
+    </div>
+  </div>
   <div class="container">
+  
     <h1 class="title">Our Products</h1>
 
-    <div class="wrapper row justify-content-center">
+    <div class="cart-window">
+      <div class="cart-window-white">
+        <h2 class="cart-title">Your order</h2>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+        <ul class="cart-list"></ul>
+        <div class="d-flex justify-content-center"><button class="btn btn-primary order" type="button">Order</button></div>
+      </div>
     </div>
+
+    <div class="wrapper row justify-content-center"></div>
+
   </div>
 </body>
 </html>
